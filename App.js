@@ -15,7 +15,7 @@ export default function App() {
   }
 
   let currentScreen = userNumber ? (
-    <GameScreen />
+    <GameScreen userNumber={userNumber} />
   ) : (
     <StartGameScreen onPickedNumber={pickedNumberHandler} />
   );
