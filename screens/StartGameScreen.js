@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Alert, StyleSheet, TextInput, View } from "react-native";
 
 import PrimaryButton from "../components/ui/PrimaryButton";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
+import Title from "../components/ui/Title";
+
 import Colors from "../constants/Colors";
 
 function StartGameScreen({ onPickedNumber }) {
@@ -22,7 +26,7 @@ function StartGameScreen({ onPickedNumber }) {
       Alert.alert(
         "Invalid number!",
         "Number has to be a number between 1 and 99.",
-        [{ text: "Okay", style: "destructive", onPress: resetInputHandler }]
+        [{ text: "Okay", style: "destructive", onPress: resetInputHandler }],
       );
       return;
     }
@@ -31,22 +35,26 @@ function StartGameScreen({ onPickedNumber }) {
   }
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.numberInput}
-        maxLength={2}
-        keyboardType="number-pad"
-        value={inputValue}
-        onChangeText={inputHandler}
-      />
-      <View style={styles.buttonsContainer}>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Title>Guess My Number</Title>
+      <Card>
+        <InstructionText>Enter a number</InstructionText>
+        <TextInput
+          style={styles.numberInput}
+          maxLength={2}
+          keyboardType="number-pad"
+          value={inputValue}
+          onChangeText={inputHandler}
+        />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+          </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
-        </View>
-      </View>
+      </Card>
     </View>
   );
 }
@@ -61,20 +69,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
   },
-  inputContainer: {
-    alignItems: "center",
-    backgroundColor: Colors.primary800,
-    borderRadius: 8,
-    elevation: 4,
-    justifyContent: "center",
-    marginHorizontal: 24,
-    marginTop: 100,
-    padding: 16,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
-  },
   numberInput: {
     borderBottomColor: Colors.accent500,
     borderBottomWidth: 2,
@@ -84,5 +78,10 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     textAlign: "center",
     width: 50,
+  },
+  rootContainer: {
+    alignItems: "center",
+    flex: 1,
+    marginTop: 100,
   },
 });

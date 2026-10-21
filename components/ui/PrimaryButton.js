@@ -24,7 +24,6 @@ export default PrimaryButton;
 const styles = StyleSheet.create({
   buttonOuterContainer: {
     margin: 4,
-    overflow: "hidden",
   },
   buttonInnerContainer: {
     backgroundColor: Colors.primary500,
