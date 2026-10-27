@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ImageBackground, Platform, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
@@ -27,10 +27,6 @@ export default function App() {
     }
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
-
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber);
   }
@@ -57,7 +53,6 @@ export default function App() {
       >
         <ImageBackground
           source={require("./assets/images/background.png")}
-          resizeMode="cover"
           style={styles.rootScreen}
           imageStyle={styles.backgroundImage}
         >
