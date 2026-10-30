@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ImageBackground, StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
@@ -51,13 +51,13 @@ export default function App() {
         colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
       >
-        <ImageBackground
-          source={require("./assets/images/background.png")}
-          style={styles.rootScreen}
-          imageStyle={styles.backgroundImage}
-        >
+        <View style={styles.rootScreen}>
+          <Image
+            source={require("./assets/images/background.png")}
+            style={[StyleSheet.absoluteFill, styles.backgroundImage]}
+          ></Image>
           <SafeAreaView style={styles.rootScreen}>{currentScreen}</SafeAreaView>
-        </ImageBackground>
+        </View>
       </LinearGradient>
     </SafeAreaProvider>
   );
@@ -66,6 +66,10 @@ export default function App() {
 const styles = StyleSheet.create({
   backgroundImage: {
     opacity: 0.15,
+    height: "100%",
+    resizeMode: "stretch",
+    transform: [{ scaleX: 2 }],
+    width: "100%",
   },
   rootScreen: {
     flex: 1,
